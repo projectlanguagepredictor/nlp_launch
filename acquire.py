@@ -6,12 +6,26 @@ After doing so, run it like this:
     python acquire.py
 To create the `data.json` file that contains the data.
 """
+#standard
+import pandas as pd
+import numpy as np
+
+#scraping
+import requests
+from requests import get
+from bs4 import BeautifulSoup
+
+#file
 import os
 import json
 from typing import Dict, List, Optional, Union, cast
-import requests
 
 from env import github_token, github_username
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+import time
 
 # TODO: Make a github personal access token.
 #     1. Go here and generate a personal access token https://github.com/settings/tokens
@@ -20,8 +34,63 @@ from env import github_token, github_username
 # TODO: Add your github username to your env.py file under the variable `github_username`
 # TODO: Add more repositories to the `REPOS` list below.
 
-REPOS = []
+# --------------------------------------------------------------SELENIUM ACQUIRE------------------------------------------------------------------------------
+
+def button_click(filename='data.json'):
+    '''
+    This function clicks a button on a web page multiple times, extracts specific information from the page, and saves it to a JSON file. It returns a pandas DataFrame of the data scraped.
+
+    Args:
+    filename (str): The name of the JSON file to save the data to. Default is 'data.json'.
+
+    Returns:
+    A df containing the scraped data.
+    '''
+    if os.path.isfile(filename):
+        print('json file found and loaded')
+        return pd.read_json(filename)
+    else: 
+        print('creating df and exporting json')
+        
+        #empty list to store the data
+        click_data = []
+
+        #create the thing
+        driver = webdriver.Chrome()
+
+        #use the thing
+        driver.get("https://github.com/topics/awesome")
+
+        #click the button 10 times
+        for _ in range(10):
+            #find the button using its XPath and click it
+            button = driver.find_element(By.XPATH, "//button[@class='ajax-pagination-btn btn btn-outline color-border-default f6 mt-0 width-full']")
+            button.click()
+
+            #wait for the page to load
+            time.sleep(5)
+
+        #extract the repo names add it to our list
+        elements = driver.find_elements(By.XPATH, "//a[@class='text-bold wb-break-word']")
+        for element in elements:
+            click_data.append(element.text)
+
+        #save the data to a JSON file
+        with open(filename, 'w') as f:
+            json.dump(click_data, f)
+
+        #close the driver
+        driver.quit()
+
+        #save list into a df
+        df = pd.DataFrame(click_data, columns={'repo_name'})
+        print(f'Number Unique: {df.nunique()}, DF Shape: {df.shape[0]}')
+    
+    return df
+
+# --------------------------------------------------------------------------------------------------------------------------------------------
  
+REPOS = []
 
 headers = {"Authorization": f"token {github_token}", "User-Agent": github_username}
 
