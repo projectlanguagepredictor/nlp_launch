@@ -1,71 +1,89 @@
-# NLP-project
+# NLP_Launch: Natural Language Predictor
 
+**Esayas Asefa and Alexia Lewis**
 
-# Programming Language Prediction
+---
 
-Project Description:
-    Github is a version control system platform that projects and tracked and saved on, it acts a resource for professionals an students that use coding. README files provide summaries of those projects. Predicting the programming language based on Readme files can allow for efficient research and greater utility of github by users since users typically need projects that use specified languages.
+## Project Description:
+
+* GitHub is a version control system platform that projects are tracked and saved on. It acts a resource for professionals and students. README files provide summaries of those projects and are typically the first thing people see when visiting a repository. Predicting the programming language based on README files can allow for more efficient research capabilities and greater utility by users using specific languages.
     
 ## Project Goal:
 
-The goal is to be able to predict programming languages based on terms used in README.md files.
+* Predict programming languages based on words used in README.md files on GitHub.
     
 ## Initial Thoughts 
 
-Many coding languages have overlap in use but each language may have a function that it's more often used for or better for than others which would means words in READMEs may vary.
-
+* Many coding languages have overlap in use but each language may have a function that it's more often used for or better for than others which would means words in README's will vary.
    
 ## The Plan
 
-     Acquire data from github
-         Pull repos
-         Convert to DataFrame
-         Look at the dataset
-     Prepare data
-       
-     Explore
-         Split into Train, Validate, Test
-         Start Visualizing Data
-         Select most relevant and interesting visulaizations for final report
-         Find out which features have the strongest relationship with the target variable
-         Create hypothesis
-         Create models
-     Model
-         Choose Evaluation Metric
-         Baseline eval metric
-         Fit and score model with Train
-         Fit and score model with Validate
-         Select best model
-             Fit and score model with Test
+### Wrangle
 
-     
-## Explore data
+* Acquire data from GitHub
+    * Pull repository names
+    * Convert to DataFrame
 
+* Prepare data
+    * ___ rows × __ columns *before* cleaning
+    * ___ rows × __ columns *after* cleaning
+    * Dropped columns
+        * insert
+    * Renamed columns
+        * insert
+        * insert
+        * insert
+    * Changed dates to datetime type
+    * Created new columns
+        * insert
+        * insert
+        * insert
+        * insert
+    * No nulls
+    * Split into Train, Validate, Test
 
-## Develop a Model to predict assessed value
+### Explore
+1. What are the most common words in READMEs?
+2. Does the length of the README vary by programming language?
+3. Do different programming languages use a different number of unique words?
+4. Are there any words that uniquely identify a programming language?
 
-      Use drivers identified in explore to build predictive models of different types
-      Evaluate models on train and validate data
-      Select the best model based on the highest accuracy
-      Evaluate the best model on test data
-      
-## Data Dictionary
+### Model
 
-| **Column**          | **Description**                                           |
-|---------------------|-----------------------------------------------------------|
-|                     |                                                           |
-|                     |                                                           |
-|                     |                                                           |
-|                     |                                                           |
-|                     |                                                           |
-|                     |                                                           |
-|                     |                                                           |
+* Model
+    * ___ Models Selected ___
+    * Choose Evaluation Metric
+    * Baseline eval metric
+    * Fit and score model with Train
+    * Score model with Validate
+    * Select best model
+    * Score model with Test
+    
+## Data Dictionary  
+
+| Feature | Definition|
+|:--------|:-----------|
+|| |
+|| |
+|| |
+|| |
+|| |
+|| |
+|| |
+|| |
+|| |
+|| |
+|| |
+|| |    
+
 
 ## Steps to Reproduce
+* Clone this repo
+* Create env.py file containing your unqiue: **github_token** and **github_username** to access
+* Run notebook
 
- 
 ## Takeaways and Conclusions
 
 
-## Recommendations
+## Recommendations/Next Steps
 
