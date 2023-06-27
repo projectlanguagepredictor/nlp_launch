@@ -8,7 +8,7 @@ Project Description:
     
 ## Project Goal:
 
-   
+The goal is to be able to predict programming languages based on a set of terms and their combinations.
     
 ## Initial Thoughts 
 
