@@ -3,7 +3,6 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import PorterStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.feature_extraction.text import FfidVectorizer
 
 def clean(text: str) -> list: #shows expectations (string will turn into a list)
     """A simple function to cleanup text data"""

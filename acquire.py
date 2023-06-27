@@ -11,7 +11,7 @@ import json
 from typing import Dict, List, Optional, Union, cast
 import requests
 
-from ez_env import github_token, github_username
+from env import github_token, github_username
 
 # TODO: Make a github personal access token.
 #     1. Go here and generate a personal access token https://github.com/settings/tokens
