@@ -21,25 +21,30 @@
 ### Wrangle
 
 * Acquire data from GitHub
-    * Pull repository names
-    * Convert to DataFrame
+    * Use env.py credentials to acquire data from GitHub
 
 * Prepare data
-    * ___ rows × __ columns *before* cleaning
-    * ___ rows × __ columns *after* cleaning
+    * 220 rows × 1 columns *before* cleaning
+    * 218 rows × __ columns *after* cleaning
+    * 2 duplicates found and removed
+        * 'awesome-swift'
+        * 'awesome-privacy'
     * Dropped columns
         * insert
     * Renamed columns
-        * insert
-        * insert
-        * insert
-    * Changed dates to datetime type
+        * column 0: 'repo_name'
     * Created new columns
         * insert
         * insert
         * insert
         * insert
     * No nulls
+    * Cleaned text
+        * token
+        * lemma
+        * stopwords
+    
+   
     * Split into Train, Validate, Test
 
 ### Explore
