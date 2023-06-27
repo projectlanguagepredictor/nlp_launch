@@ -21,6 +21,7 @@ import json
 from typing import Dict, List, Optional, Union, cast
 
 from env import github_token, github_username
+import itertools
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -85,9 +86,21 @@ def button_click(filename='data.json'):
 
     return click_data
 
+def clean_click_data(click_data):
+    '''
+    this function takes in the dirty list and returns a cleaned one
+    '''
+    #use nested for loop to iterate through each item in the list
+    for i in range(len(click_data)):
+        for j in range(len(click_data[i])):
+            click_data[i][j] = click_data[i][j].replace(' ', '')
+    click_data = list(itertools.chain(*click_data))
+            
+    return click_data
+
 # --------------------------------------------------------------------------------------------------------------------------------------------
  
-REPOS = []
+REPOS = clean_click_data(button_click().values.tolist())
 
 headers = {"Authorization": f"token {github_token}", "User-Agent": github_username}
 
