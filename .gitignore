@@ -8,6 +8,7 @@ __pycache__/
 archive/
 *.csv
 *.docx
+*.json
 
 # Byte-compiled / optimized / DLL files
 *.py[cod]
