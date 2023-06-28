@@ -37,13 +37,13 @@ def normalize_everything(string):
 
 #create removal of specials function
 def specials_removed(string):
-    string = re.sub(r'[^a-z\'\s]', '', string)
+    string = re.sub(r'[^a-z\'\s]', ' ', string)
     return string
 
 def basic_clean(string):
     string = string.lower()
     string = unicodedata.normalize('NFKD', string).encode('ascii','ignore').decode('utf-8')
-    string = re.sub(r'[^a-z\'\s]', '', string)
+    string = re.sub(r'[^a-z\'\s]', ' ', string)
     return string
 
 def token_it_up(string):
@@ -59,8 +59,7 @@ def lemmad(string):
 
 def remove_stopwords(string, extra_words=[], exclude_words=[]):
     
-    ADDITIONAL_STOPWORDS = ['Python', 'python', 'makefile', 'Makefile', 'Java', 'java', '&#9;'\
-                           , 'HTML', 'Shell', 'CSS', 'TypeScript', 'Go', 'JavaScript']
+    ADDITIONAL_STOPWORDS = ['&#9;']
     
     sls = stopwords.words('english') + ADDITIONAL_STOPWORDS
     
