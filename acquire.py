@@ -63,8 +63,8 @@ def button_click(filename='data.json'):
     # access the site
     driver.get("https://github.com/topics/awesome")
 
-    # click the button 10 times
-    for _ in range(10):
+    # click the button 36 times
+    for _ in range(36):
         # find the button using its XPath and click it
         button = driver.find_element(By.XPATH, "//button[@class='ajax-pagination-btn btn btn-outline color-border-default f6 mt-0 width-full']")
         button.click()
@@ -83,6 +83,12 @@ def button_click(filename='data.json'):
 
     # close the driver
     driver.quit()
+    
+    #use nested for loop to iterate through each item in the list
+    for i in range(len(click_data)):
+        for j in range(len(click_data[i])):
+            click_data[i][j] = click_data[i][j].replace(' ', '')
+    click_data = list(itertools.chain(*click_data))
 
     return click_data
 
@@ -178,3 +184,27 @@ def scrape_github_data() -> List[Dict[str, str]]:
 if __name__ == "__main__":
     data = scrape_github_data()
     json.dump(data, open("data2.json", "w"), indent=1)
+    
+def get_scraped_data(filename='scraped.json'):
+    '''
+    this function checks if a file exists in the local directory, if not, it gets the data and saves to a JSON.
+    returns the data.
+    '''
+    if os.path.isfile(filename):
+        print('json file found and loaded')
+        return pd.read_json(filename)
+    
+    else:
+        print('creating df and exporting json')
+
+        #get the data
+        scraped = ac.scrape_github_data()
+        
+        #create the object
+        json_object = json.dumps(scraped, indent=3)
+
+        #save the data to a JSON file
+        with open('scraped.json', 'w') as outfile:
+            outfile.write(json_object)
+        
+    return scraped
