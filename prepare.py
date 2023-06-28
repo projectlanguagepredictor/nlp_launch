@@ -37,13 +37,13 @@ def normalize_everything(string):
 
 #create removal of specials function
 def specials_removed(string):
-    string = re.sub(r'[^a-z0-9\'\s]', '', string)
+    string = re.sub(r'[^a-z\'\s]', '', string)
     return string
 
 def basic_clean(string):
     string = string.lower()
     string = unicodedata.normalize('NFKD', string).encode('ascii','ignore').decode('utf-8')
-    string = re.sub(r'[^a-z0-9\'\s]', '', string)
+    string = re.sub(r'[^a-z\'\s]', '', string)
     return string
 
 def token_it_up(string):
