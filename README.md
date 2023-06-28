@@ -14,7 +14,7 @@
     
 ## Initial Thoughts 
 
-* Many coding languages have overlap in use but each language may have a function that it's more often used for or better for than others which would means words in README's will vary.
+* Many coding languages have overlap in use but each language may have a function that it's more often used for or better for than others which would mean words in README's will vary.
    
 ## The Plan
 
