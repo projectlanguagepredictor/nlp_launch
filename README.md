@@ -39,6 +39,8 @@
         * clean (for clean readme contents)
         * lemma (for lemmatized clean readme contents)
     * No nulls
+    * Changed languages that are not 'Python', 'JavaScript', 'HTML', 'Shell', 'Java', 'Go' to 'other'
+        * other = 599
 
 ### Explore
 1. What are the most common words in READMEs?
