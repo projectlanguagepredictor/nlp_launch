@@ -198,13 +198,14 @@ def get_scraped_data(filename='scraped.json'):
         print('creating df and exporting json')
 
         #get the data
-        scraped = ac.scrape_github_data()
-        
+        scraped = scrape_github_data()
+        print('scraped', scraped)
         #create the object
         json_object = json.dumps(scraped, indent=3)
+        print('json_object', json_object)
 
         #save the data to a JSON file
         with open('scraped.json', 'w') as outfile:
             outfile.write(json_object)
-        
+        print('file complete')
     return scraped
