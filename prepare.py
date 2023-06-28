@@ -73,10 +73,20 @@ def remove_stopwords(string, extra_words=[], exclude_words=[]):
 
 def clean_df(df, col_to_clean, exclude_words=[], extra_words=[]):
     '''
-    send in df, returns df with original, clean, and lemmatized data
+    send in df, returns df with repo and author, language, and clean readme data
     '''
     df['clean'] = df[col_to_clean].apply(basic_clean).apply(token_it_up).apply(remove_stopwords)
-    df['lemma'] = df.clean.apply(lemmad)
+    df['readme'] = df.clean.apply(lemmad)
+    
+    df = df.drop(columns={'clean', col_to_clean})
+    
+    #assign languages to keep
+    languages = ['Python', 'JavaScript', 'HTML', 'Shell', 'Java', 'Go']
+
+    #edit the languages but keep the data
+    df['language'] = df.apply(lambda row: row['language'] if row['language'] in languages else 'other', axis=1)
+    df['language'] = df['language'].lower()
+    
     return df
 
 def clean(text):

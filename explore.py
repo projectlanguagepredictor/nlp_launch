@@ -30,14 +30,14 @@ def get_words(df):
     returns a filtered df containing the top 4000 words.
     '''
     #assinging all words to proper labels
-    python_words = pp.clean(' '.join(df[df.language == 'python'].lemma))
-    javascript_words = pp.clean(' '.join(df[df.language == 'javascript'].lemma))
-    html_words = pp.clean(' '.join(df[df.language == 'html'].lemma))
-    shell_words = pp.clean(' '.join(df[df.language == 'shell'].lemma))
-    java_words = pp.clean(' '.join(df[df.language == 'java'].lemma))
-    go_words = pp.clean(' '.join(df[df.language == 'go'].lemma))
-    other_words = pp.clean(' '.join(df[df.language == 'other'].lemma))
-    all_words = pp.clean(' '.join(df.lemma))
+    python_words = pp.clean(' '.join(df[df.language == 'python'].readme))
+    javascript_words = pp.clean(' '.join(df[df.language == 'javascript'].readme))
+    html_words = pp.clean(' '.join(df[df.language == 'html'].readme))
+    shell_words = pp.clean(' '.join(df[df.language == 'shell'].readme))
+    java_words = pp.clean(' '.join(df[df.language == 'java'].readme))
+    go_words = pp.clean(' '.join(df[df.language == 'go'].readme))
+    other_words = pp.clean(' '.join(df[df.language == 'other'].readme))
+    all_words = pp.clean(' '.join(df.readme))
     
     
     #grabbing frequencies of occurences
