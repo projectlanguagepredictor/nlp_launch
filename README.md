@@ -18,34 +18,27 @@
    
 ## The Plan
 
+* Imports Used:
+    * pandas
+    * numpy
+    * os
+    * ...
+
 ### Wrangle
 
 * Acquire data from GitHub
     * Use env.py credentials to acquire data from GitHub
+    * Each column is a feature of the repository
+    * Each row is a repository
 
 * Prepare data
-    * 220 rows × 1 columns *before* cleaning
-    * 218 rows × __ columns *after* cleaning
-    * 2 duplicates found and removed
-        * 'awesome-swift'
-        * 'awesome-privacy'
-    * Dropped columns
-        * insert
-    * Renamed columns
-        * column 0: 'repo_name'
+    * 740 rows × 3 columns *before* cleaning
+    * 740 rows × 5 columns *after* cleaning
+    * No duplicates
     * Created new columns
-        * insert
-        * insert
-        * insert
-        * insert
+        * clean (for clean readme contents)
+        * lemma (for lemmatized clean readme contents)
     * No nulls
-    * Cleaned text
-        * token
-        * lemma
-        * stopwords
-    
-   
-    * Split into Train, Validate, Test
 
 ### Explore
 1. What are the most common words in READMEs?
@@ -68,19 +61,11 @@
 
 | Feature | Definition|
 |:--------|:-----------|
-|| |
-|| |
-|| |
-|| |
-|| |
-|| |
-|| |
-|| |
-|| |
-|| |
-|| |
-|| |    
-
+|repo| The 'author name/repo name' of the repo|
+|language| The repo language used|
+|readme_contents| The contents of the entire README from each site|
+|clean| The cleaned version of readme_contents|
+|lemma| The lemmatized version of the clean column|
 
 ## Steps to Reproduce
 * Clone this repo
