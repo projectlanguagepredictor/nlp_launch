@@ -59,7 +59,7 @@ def lemmad(string):
 
 def remove_stopwords(string, extra_words=[], exclude_words=[]):
     
-    ADDITIONAL_STOPWORDS = ['&#9;']
+    ADDITIONAL_STOPWORDS = ['&#9;', 'www', 'github', 'com', 'http', 'td', 'c', 'e', 'org', 'http ', 'b', ' http', 'io']
     
     sls = stopwords.words('english') + ADDITIONAL_STOPWORDS
     
@@ -89,8 +89,6 @@ def clean(text):
     Returns:
         list: A list of lemmatized words after cleaning.
     '''
-    #assigning additional stopwords
-    ADDITIONAL_STOPWORDS = ['r', 'u', '2', '4', 'ltgt']
     
     # basic_clean() function from last lesson:
     # Normalize text by removing diacritics, encoding to ASCII, decoding to UTF-8, and converting to lowercase
@@ -108,7 +106,7 @@ def clean(text):
     wnl = nltk.stem.WordNetLemmatizer()
     
     # Combine standard English stopwords with additional stopwords
-    stopwords = nltk.corpus.stopwords.words('english') + ADDITIONAL_STOPWORDS
+    stopwords = nltk.corpus.stopwords.words('english')
     
     # Lemmatize words and remove stopwords
     cleaned_words = [wnl.lemmatize(word) for word in words if word not in stopwords]
