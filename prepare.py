@@ -79,3 +79,39 @@ def clean_df(df, col_to_clean, exclude_words=[], extra_words=[]):
     df['clean'] = df[col_to_clean].apply(basic_clean).apply(token_it_up).apply(remove_stopwords)
     df['lemma'] = df.clean.apply(lemmad)
     return df
+
+def clean(text):
+    '''
+    A simple function to cleanup text data.
+    
+    Args:
+        text (str): The text to be cleaned.
+        
+    Returns:
+        list: A list of lemmatized words after cleaning.
+    '''
+    #assigning additional stopwords
+    ADDITIONAL_STOPWORDS = ['r', 'u', '2', '4', 'ltgt']
+    
+    # basic_clean() function from last lesson:
+    # Normalize text by removing diacritics, encoding to ASCII, decoding to UTF-8, and converting to lowercase
+    text = (unicodedata.normalize('NFKD', text)
+             .encode('ascii', 'ignore')
+             .decode('utf-8', 'ignore') #most frequently used for base text creation - works great with SQL
+             .lower())
+    
+    # Remove punctuation, split text into words
+    words = re.sub(r'[^\w\s]', '', text).split()
+    
+    
+    # lemmatize() function from last lesson:
+    # Initialize WordNet lemmatizer
+    wnl = nltk.stem.WordNetLemmatizer()
+    
+    # Combine standard English stopwords with additional stopwords
+    stopwords = nltk.corpus.stopwords.words('english') + ADDITIONAL_STOPWORDS
+    
+    # Lemmatize words and remove stopwords
+    cleaned_words = [wnl.lemmatize(word) for word in words if word not in stopwords]
+    
+    return cleaned_words
