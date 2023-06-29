@@ -85,7 +85,8 @@ def clean_df(df, col_to_clean, exclude_words=[], extra_words=[]):
 
     #edit the languages but keep the data
     df['language'] = df.apply(lambda row: row['language'] if row['language'] in languages else 'other', axis=1)
-    df['language'] = df['language'].lower()
+    df['language'] = lower_everything(df['language'])
+                                      
     
     return df
 
