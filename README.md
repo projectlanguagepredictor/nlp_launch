@@ -50,7 +50,7 @@
 
 * Prepare data
     * 740 rows × 1 column before cleaning
-    * 740 rows × 3 columns after cleaning and acquiring READMEs
+    * 740 rows × 4 columns after cleaning and acquiring READMEs
     * No duplicates
     * No nulls
     * Changed languages that are not 'Python', 'JavaScript', 'HTML', 'Shell', 'Java', or 'Go' to 'other'
