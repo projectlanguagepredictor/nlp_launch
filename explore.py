@@ -143,4 +143,4 @@ def calculate_average_letter_count(df):
     plt.ylabel('Average Letter Count')
     plt.title('Average Letter Count by Language')
     plt.show()
-    sc.compare_categorical_continuous(df['language'], df['letter_count'], df)        
+    sc.compare_categorical_continuous('language', 'letter_count', df)        
