@@ -50,7 +50,7 @@
 
 ### Model
 
-We decided to use KNN with a n count of 
+We decided to use KNN for our test and were able to accomplish an accuracy of 81% beating our baseline by 1%
 
 * Model
     * ___ Models Selected ___
