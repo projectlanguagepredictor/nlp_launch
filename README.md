@@ -1,7 +1,5 @@
 # NLP_Launch: Natural Language Predictor
 
-**Esayas Asefa and Alexia Lewis**
-
 ---
 
 ## Project Description:
@@ -45,20 +43,22 @@
 ### Wrangle
 
 * Acquire data from GitHub
-    * Use env.py credentials to acquire data from GitHub
+    * Data acquired from GitHub using Selenium
+    * Use env.py credentials
     * Each column is a feature of the repository
     * Each row is a repository
 
 * Prepare data
-    * 740 rows × 3 columns *before* cleaning
-    * 740 rows × 5 columns *after* cleaning
+    * 740 rows × 1 column before cleaning
+    * 740 rows × 3 columns after cleaning and acquiring READMEs
     * No duplicates
-    * Created new columns
-        * clean (for clean readme contents)
-        * lemma (for lemmatized clean readme contents)
     * No nulls
-    * Changed languages that are not 'Python', 'JavaScript', 'HTML', 'Shell', 'Java', 'Go' to 'other'
+    * Changed languages that are not 'Python', 'JavaScript', 'HTML', 'Shell', 'Java', or 'Go' to 'other'
         * other = 599
+    * Cleaned all text using
+        * prepare.py functions
+    * Additional Stopwords used to account for all word fractions leftover from the cleaning process to get as close as possible to all true words
+    * No outliers removed
 
 ### Explore
 1. What are the most common words in READMEs?
@@ -68,7 +68,7 @@
 
 ### Model
 
-We decided to use accuracy as our evaluation metric and KNN for our Test model since it was the best after training on. We were able to accomplish an prediction accuracy of 81% beating our baseline prediction of 80%.
+We decided to use accuracy as our evaluation metric and KNN for our Test model since it was the best after training on. We were able to accomplish an prediction accuracy of 82% beating our baseline prediction of 80%.
 
 * Model
     * KNN with an n_neighbor of 9
@@ -76,7 +76,7 @@ We decided to use accuracy as our evaluation metric and KNN for our Test model s
     * Baseline .80
     * Fit and score model with Train
     * Score model with Validate
-    * KNN was our best model giving us an accuracy of .83
+    * KNN was our best model giving us an accuracy of .82
     * Score model with Test
     
     
@@ -86,9 +86,7 @@ We decided to use accuracy as our evaluation metric and KNN for our Test model s
 |:--------|:-----------|
 |repo| The 'author name/repo name' of the repo|
 |language| The repo language used|
-|readme_contents| The contents of the entire README from each site|
-|clean| The cleaned version of readme_contents|
-|lemma| The lemmatized version of the clean column|
+|readme| The cleaned contents of unqiue READMEs|
 
 ## Steps to Reproduce
 * Clone this repo
