@@ -11,7 +11,7 @@ import unicodedata
 import nltk
 
 #for viz
-from wordcloud import WordCloudfrom wordcloud import WordCloud
+from wordcloud import WordCloud
 from sklearn.feature_extraction.text import CountVectorizer
 import matplotlib.pyplot as plt
 
