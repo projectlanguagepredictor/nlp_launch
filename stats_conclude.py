@@ -32,6 +32,7 @@ def chi2_test(table):
         print ("We fail to reject the null hypothesis.")
 
 def conclude_1samp_tt(group1, group_mean):
+    
     """Goal: ((compare one categorical and one continuous variable))
     Compare observed mean to theoretical mean. (Non-parametric = Wilcoxon)
     Bubble in the bubble...
@@ -142,8 +143,9 @@ def compare_categorical_continuous(categorical_var, continuous_var, data):
         print(f"p-value = {p_val:.10f}. There is no significant difference between the means of {categorical_var} and {continuous_var}.")
 
 
-def conclude_2samp_gt(sample1, sample2): BROKEN
-    """Goal: ((compare one categorical and one continuous variable))
+'''def conclude_2samp_gt(sample1, sample2): BROKEN
+
+"""Goal: ((compare one categorical and one continuous variable))
     Compare two observed means (independent samples). (Non-parametric = Mann-Whitney's)
     ---
     This function is a two-sample, right-tailed, t-test reliant on
@@ -154,22 +156,22 @@ def conclude_2samp_gt(sample1, sample2): BROKEN
     a conclusion statementusing the outcome of the Levene test.
     """
 
-    α = 0.05
+α = 0.05
 
     # Check Variance
-    tstat, p = stats.levene(sample1, sample2)
-    print(f"Running Levene Test...")
-    if p > α:
-        print(f'p-value: {p:.10f} > {α}?')
-        print(f"Variance is True")
+tstat, p = stats.levene(sample1, sample2)
+print(f"Running Levene Test...")
+if p > α:
+    print(f'p-value: {p:.10f} > {α}?')
+    print(f"Variance is True")
 
-        # Perform test for True variance
-        tstat, p = stats.ttest_ind(sample1, sample2, equal_var=True)
-        print(f"Assumptions are met: Two-Sample, Right-Tailed, 'equal_Var=True', T-Test successful...")
-        print(f't-stat: {tstat} > 0?')
-        print(f'p-value: {p/2} < {α}?')
-        print('----')
-        if (((p/2) < α) and (tstat > 0)):
+# Perform test for True variance
+tstat, p = stats.ttest_ind(sample1, sample2, equal_var=True)
+    print(f"Assumptions are met: Two-Sample, Right-Tailed, 'equal_Var=True', T-Test successful...")
+    print(f't-stat: {tstat} > 0?')
+    print(f'p-value: {p/2} < {α}?')
+    print('----')
+if (((p/2) < α) and (tstat > 0)):
             print("We can reject the null hypothesis.")
         else:
             print('We fail to reject the null hypothesis.')
@@ -187,9 +189,9 @@ def conclude_2samp_gt(sample1, sample2): BROKEN
         if (((p/2) < α) and (tstat > 0)):
             print("We can reject the null hypothesis.")
         else:
-            print('We fail to reject the null hypothesis.')
+            print('We fail to reject the null hypothesis.')'''
 
-def conclude_2samp_lt(sample1, sample2): BROKEN
+'''def conclude_2samp_lt(sample1, sample2): BROKEN
     """Goal: ((compare one categorical and one continuous variable))
     Compare two observed means (independent samples). (Non-parametric = Mann-Whitney's)
     ---
@@ -234,7 +236,7 @@ def conclude_2samp_lt(sample1, sample2): BROKEN
         if (((p/2) < α) and (tstat < 0)):
             print("We can reject the null hypothesis.")
         else:
-            print('We fail to reject the null hypothesis.')
+            print('We fail to reject the null hypothesis.')'''
 
 
 
