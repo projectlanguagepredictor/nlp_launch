@@ -83,3 +83,58 @@ df = pd.read_csv('your_dataset.csv')
 
 # Call the function
 plot_unique_words_and_compare(df)
+
+def plot_language_distribution(df):
+    plt.figure(figsize=(10, 6))
+    sns.countplot(y='language', data=df, order=df['language'].value_counts().index, color='skyblue')
+    plt.title('Distribution of Languages')
+    plt.xlabel('Count')
+    plt.ylabel('Language')
+    plt.show()
+
+# Load the dataset
+df = pd.read_csv('your_dataset.csv')
+
+# Call the function
+plot_language_distribution(df)
+
+
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+
+def generate_language_wordclouds(df):
+    # Group the DataFrame by the 'language' column and join all the readme files for each language into a single string
+    grouped = df.groupby('language')['readme'].apply(' '.join).reset_index()
+
+    # Initialize a CountVectorizer
+    cv = CountVectorizer(stop_words='english')
+
+    # Ccreate a word cloud of the top 20 most frequently used words, for each language in df
+    for i, row in grouped.iterrows():
+        # Count the frequency of each word in the readme files for the current language
+        word_count = cv.fit_transform([row['readme']])
+        words = cv.get_feature_names_out()
+        word_freq = word_count.toarray().sum(axis=0)
+        word_freq_dict = dict(zip(words, word_freq))
+
+        # Get the top 20 most frequently used words and their frequencies
+        top_words = sorted(word_freq_dict.items(), key=lambda x: x[1], reverse=True)[:20]
+        top_words_dict = dict(top_words)
+
+        # Create a word cloud
+        wc = WordCloud(width=800, height=400, max_words=20, background_color='white').generate_from_frequencies(top_words_dict)
+
+        # Display the word cloud
+        plt.figure(figsize=(10, 5))
+        plt.imshow(wc, interpolation='bilinear')
+        plt.axis('off')
+        plt.title(f"Top 20 Words for {row['language']}")
+        plt.show()
+
+# Load the dataset
+df = pd.read_csv('your_dataset.csv')
+
+# Call the function
+generate_language_wordclouds(df)

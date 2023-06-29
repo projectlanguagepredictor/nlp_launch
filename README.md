@@ -18,14 +18,28 @@
    
 ## The Plan
 
-* Imports Used:
-    * pandas
-    * numpy
-    * os
-    * acquire
-    * prepare
-    * explore
-    * modeling
+* Acquire data from repository list in Github
+    * Create function using Selenium to pull the readmes from each repo
+    * Create dataframe of repo names, content, and language
+* Prepare data
+    * Identify and handle Nulls, duplicate data, and outliers
+    * Change column names to make them readable
+* Explore data in search of drivers of wine quality
+    * Split into Train, Validate, Test
+    * Start Visualizing Data
+    * Select most relevant and interesting visualizations for final report
+    * Find out which features have the strongest relationship with the target variable
+* Answer the following initial questions
+    1. What are the most common words in READMEs?
+    2. Does the length of the README vary by programming language?
+    3. Do different programming languages use a different number of unique words?
+    4. Are there any words that uniquely identify a programming language?
+* Develop a model to predict language
+    * Choose Evaluation Metric
+    * Evaluate model with Train and Validate
+    * Select best model
+    * Evaluate best model with Test
+* Draw conclusions
     
 
 ### Wrangle
