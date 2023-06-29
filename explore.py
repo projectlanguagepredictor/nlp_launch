@@ -17,6 +17,20 @@ import matplotlib.pyplot as plt
 
 # -----------------------------------------------------------------EXPLORE-----------------------------------------------------------------
 
+def unique_words(word_counts):
+    '''
+    '''
+    # setting basic style parameters for matplotlib
+    plt.rc('figure', figsize=(13, 7))
+    plt.style.use('seaborn-darkgrid')
+
+    #viz
+    word_counts.sort_values('all', ascending=False)[1:21][['python', 'javascript', 'html', 'shell', 'java', 'go']].head(20).plot.barh()
+    plt.xlabel('Count')
+    plt.ylabel('Word')
+    plt.title('Word Identification per Language')
+    plt.show()
+
 def show_counts_and_ratios(df, column):
     """
     Takes in a dataframe and a string of a single column

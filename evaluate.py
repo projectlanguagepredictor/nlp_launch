@@ -69,9 +69,22 @@ def assign_variables(train, validate, test):
     
     return X_train, y_train, X_validate, y_validate, X_test, y_test
 
-def make_bag_o_words(X_train, X_validate, X_test):
+def make_bag_o_words(df, col):
     '''
-    this function makes bags of words
+    this function makes a bag of words from df
+    ---
+    format: bag_of_words = function()
+    '''
+        #make the count vectorizer thing to create the bag of words to prepare for modeling
+    cv = CountVectorizer()
+
+    #fit and use the thing on the entire corpus
+    bag_of_words = cv.fit_transform(df[col]) #everything is getting transformed on the same data set because we haven't split yet
+    return bag_of_words
+
+def make_variable_bag_o_words(X_train, X_validate, X_test):
+    '''
+    this function makes bags of words from variables
     ---
     format: X_bow, X_validate_bow, X_test_bow = function()
     '''
@@ -156,58 +169,4 @@ def test_model(X_bow, y_train, X_test_bow, y_test):
       #^^^ this is the accuracy score!!
 
     print(f'baseline accuracy: 80.68%')
-    print(f'KNN/Neighbors=9: `test` accuracy: {test_acc:.2%}')
-
-#------------------------------------------------------------- VIZZES -------------------------------------------------------------
-
-# def plot_target(df, col1):
-#     """This function plots the target variable"""
-#     # plot the target variable
-#     plt.figure(figsize=(10, 10))
-#     sns.histplot(df[col1], bins=60, color='purple')
-#     plt.axvline(df[col1].mean(), label='Average Profit', color='black', linewidth=2)
-#     plt.legend()
-#     plt.title('Distribution of Target Variable: Profit');
-
-# def plot_model_predictions(p1, p2, p3, y, baseline):
-#     """Plots the selected models predictions with baseline"""
-#     plt.scatter(p1, y, label='Linear Regression',  color="red", alpha=.6)
-#     plt.scatter(p2, y, label='LassoLars', color='green', alpha=.6)
-#     plt.scatter(p3, y, label='GLM', color='blue', alpha=.6)
-#     plt.plot(y, y, label='_nolegend_', color='grey')
-
-#     plt.axhline(baseline, ls=':', color='grey')
-#     plt.annotate("Baseline", (65, 81))
-
-#     plt.title("Where are predictions more extreme? More modest? Overfit?")
-#     plt.ylabel("Actual Profit")
-#     plt.xlabel("Predicted Profit")
-#     plt.legend()
-#     plt.show()
-    
-# def plot_model_residuals(p1, p2, p3, y):
-#     """Plots the selected models residuals with baseline"""
-#     plt.axhline(label="No Error")
-
-#     plt.scatter(y, p1 - y, alpha=.5, color="red", label="Linear Regression")
-#     plt.scatter(y, p2 - y, alpha=.5, color="green", label="LassoLars")
-#     plt.scatter(y, p3 - y, alpha=.5, color="blue", label="GLM")
-
-#     plt.legend()
-#     plt.title("Do the size of errors change as the actual value changes?")
-#     plt.xlabel("Actual Profit")
-#     plt.ylabel("Residual: Predicted Profit - Actual Profit")
-#     plt.show()
-
-# def plot_model_actual_predicted(y, p1):
-#     """Plots the selected models predictions with actual"""
-#     plt.hist(y, color='purple', alpha=.4, label="Actual")
-#     plt.hist(p1, color='green', alpha=.9, label="LassoLars")
-#     # plt.hist(pred_glm, color='orange', alpha=.7, label='GLM')
-#     # plt.hist(pred_lars, color='yellow', alpha=.2, label='LassoLars')
-
-#     plt.xlabel("Profit Size")
-#     plt.ylabel("Count")
-#     plt.title("Comparing the Distribution of Actual to Predicted Profit Size")
-#     plt.legend()
-#     plt.show()
+    print(f'KNN / Neighbors = 9: `test` accuracy: {test_acc:.2%}')
