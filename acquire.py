@@ -20,13 +20,21 @@ import os
 import json
 from typing import Dict, List, Optional, Union, cast
 
+#credentials
 from env import github_token, github_username
+
+#iterator
 import itertools
 
+#selenium
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 import time
+
+#ignore warnings
+import warnings
+warnings.filterwarnings("ignore")
 
 # TODO: Make a github personal access token.
 #     1. Go here and generate a personal access token https://github.com/settings/tokens
@@ -48,49 +56,52 @@ def button_click(filename='data.json'):
     Returns:
         A df containing the scraped data.
     """
+    
     if os.path.isfile(filename):
         print('json file found and loaded')
         return pd.read_json(filename)
+    
     else:
         print('creating df and exporting json')
 
-    # empty lists to store the data
-    click_data = []
+        # empty lists to store the data
+        click_data = []
 
-    # create the webdriver
-    driver = webdriver.Chrome()
+        # create the webdriver
+        driver = webdriver.Chrome()
 
-    # access the site
-    driver.get("https://github.com/topics/awesome")
+        # access the site
+        driver.get("https://github.com/topics/awesome")
 
-    # click the button 36 times
-    for _ in range(36):
-        # find the button using its XPath and click it
-        button = driver.find_element(By.XPATH, "//button[@class='ajax-pagination-btn btn btn-outline color-border-default f6 mt-0 width-full']")
-        button.click()
+        # click the button 36 times
+        for _ in range(36):
+            # find the button using its XPath and click it
+            button = driver.find_element(By.XPATH, "//button[@class='ajax-pagination-btn btn btn-outline color-border-default f6 mt-0 width-full']")
+            button.click()
 
-        # wait for the page to load
-        time.sleep(5)
+            # wait for the page to load
+            time.sleep(5)
 
-    # extract the author and repo name and add them to the list
-    elements = driver.find_elements(By.XPATH, '//h3[@class="f3 color-fg-muted text-normal lh-condensed"]')
-    for element in elements:
-        click_data.append(element.text)
+        # extract the author and repo name and add them to the list
+        elements = driver.find_elements(By.XPATH, '//h3[@class="f3 color-fg-muted text-normal lh-condensed"]')
+        for element in elements:
+            click_data.append(element.text)
 
-    # save the data to a JSON file
-    with open(filename, 'w') as f:
-        json.dump({'string': click_data}, f)
+        # save the data to a JSON file
+        with open(filename, 'w') as f:
+            json.dump({'string': click_data}, f)
 
-    # close the driver
-    driver.quit()
+        # close the driver
+        driver.quit()
     
-    #use nested for loop to iterate through each item in the list
-    for i in range(len(click_data)):
-        for j in range(len(click_data[i])):
-            click_data[i][j] = click_data[i][j].replace(' ', '')
-    click_data = list(itertools.chain(*click_data))
+        #use nested for loop to iterate through each item in the list
+        for i in range(len(click_data)):
+            for j in range(len(click_data[i])):
+                click_data[i][j] = click_data[i][j].replace(' ', '')
+        click_data = list(itertools.chain(*click_data))
+        print(f'{len(click_data)} repos exported')
 
-    return click_data
+        return click_data
 
 def clean_click_data(click_data):
     '''
@@ -199,13 +210,12 @@ def get_scraped_data(filename='scraped.json'):
 
         #get the data
         scraped = scrape_github_data()
-        print('scraped', scraped)
+
         #create the object
         json_object = json.dumps(scraped, indent=3)
-        print('json_object', json_object)
 
         #save the data to a JSON file
         with open('scraped.json', 'w') as outfile:
             outfile.write(json_object)
-        print('file complete')
-    return scraped
+        print(f'{len(scraped)} READMEs exported')
+        return scraped
