@@ -70,7 +70,13 @@ def get_words(df):
     
 
 def plot_unique_words_and_compare(df):
+    '''
+    this function uses the nested function to perform a stats test 
+    '''
     def plot_unique_words_per_language(df):
+        '''
+        plots the count of unique words used per language (excluding 'all' and 'other') and compares them.
+        '''
         word_counts = df.groupby('language')['text'].transform(lambda x: len(set(x.str.split().sum())))
         word_counts = word_counts.drop(columns={'all', 'other'})
         word_counts.nunique().plot.barh()
@@ -85,6 +91,9 @@ def plot_unique_words_and_compare(df):
 
 
 def plot_language_distribution(df):
+    '''
+    generates word clouds for the top 20 most frequently used words in each language.
+    '''
     plt.figure(figsize=(10, 6))
     sns.countplot(y='language', data=df, order=df['language'].value_counts().index, color='skyblue')
     plt.title('Distribution of Languages')
@@ -121,3 +130,17 @@ def generate_language_wordclouds(df):
         plt.axis('off')
         plt.title(f"Top 20 Words for {row['language']}")
         plt.show()
+
+def calculate_average_letter_count(df):
+    # Calculate the letter count for each row
+    df['letter_count'] = df['readme'].apply(lambda x: len(x))
+    # Group by language and calculate the average letter count
+    grouped_data = df.groupby('language').agg('mean')
+    print(grouped_data)
+    # Create a bar plot
+    plt.bar(grouped_data.index, grouped_data.letter_count)
+    plt.xlabel('Language')
+    plt.ylabel('Average Letter Count')
+    plt.title('Average Letter Count by Language')
+    plt.show()
+    sc.compare_categorical_continuous(df['language'], df['letter_count'], df)        
