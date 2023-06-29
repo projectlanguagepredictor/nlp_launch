@@ -50,6 +50,8 @@
 
 ### Model
 
+We decided to use KNN with a n count of 
+
 * Model
     * ___ Models Selected ___
     * Choose Evaluation Metric
@@ -76,7 +78,8 @@
 
 ## Takeaways and Conclusions
 
+The words used in readme's can be used with a great deal of proficiency in predicting the language of that project. 
 
 ## Recommendations/Next Steps
 
-Create a funciton on github where individuals have to identify the subject that their project is looking into. Choose 
+We would create a column identifying the likely subject of each repo. Create a feature on github where individuals have to identify the subject that their project is looking into. This may User Experience and Interface engineers.
