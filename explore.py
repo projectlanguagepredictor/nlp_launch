@@ -78,11 +78,7 @@ def plot_unique_words_and_compare(df):
     plot_unique_words_per_language(df)
     sc.compare_categorical_continuous(df['language'], df['count'], df)
 
-# Load the dataset
-df = pd.read_csv('your_dataset.csv')
 
-# Call the function
-plot_unique_words_and_compare(df)
 
 def plot_language_distribution(df):
     plt.figure(figsize=(10, 6))
@@ -92,11 +88,6 @@ def plot_language_distribution(df):
     plt.ylabel('Language')
     plt.show()
 
-# Load the dataset
-df = pd.read_csv('your_dataset.csv')
-
-# Call the function
-plot_language_distribution(df)
 
 
 import pandas as pd
@@ -132,9 +123,3 @@ def generate_language_wordclouds(df):
         plt.axis('off')
         plt.title(f"Top 20 Words for {row['language']}")
         plt.show()
-
-# Load the dataset
-df = pd.read_csv('your_dataset.csv')
-
-# Call the function
-generate_language_wordclouds(df)
