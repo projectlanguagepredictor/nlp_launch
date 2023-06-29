@@ -9,7 +9,7 @@ import re
 import unicodedata
 import nltk
 
-
+import stats_conclude
 
 # -----------------------------------------------------------------EXPLORE-----------------------------------------------------------------
 
@@ -64,3 +64,22 @@ def get_words(df):
     
     return filtered_word_counts
     
+
+def plot_unique_words_and_compare(df):
+    def plot_unique_words_per_language(df):
+        word_counts = df.groupby('language')['text'].transform(lambda x: len(set(x.str.split().sum())))
+        word_counts = word_counts.drop(columns={'all', 'other'})
+        word_counts.nunique().plot.barh()
+        plt.title('Unique Words Used Per Language (excluding other)')
+        plt.xlabel('Count')
+        plt.ylabel('Language')
+        plt.show()
+
+    plot_unique_words_per_language(df)
+    sc.compare_categorical_continuous(df['language'], df['count'], df)
+
+# Load the dataset
+df = pd.read_csv('your_dataset.csv')
+
+# Call the function
+plot_unique_words_and_compare(df)

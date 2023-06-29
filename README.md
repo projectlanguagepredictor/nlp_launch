@@ -22,7 +22,11 @@
     * pandas
     * numpy
     * os
-    * ...
+    * acquire
+    * prepare
+    * explore
+    * modeling
+    
 
 ### Wrangle
 
@@ -50,10 +54,10 @@
 
 ### Model
 
-We decided to use KNN for our test and were able to accomplish an accuracy of 81% beating our baseline by 1%
+We decided to use * as our evaluation metric and KNN for our Test mode since it was the best after training on. We were able to accomplish an prediction accuracy of 81% beating our baseline prediction of 80%.
 
 * Model
-    * ___ Models Selected ___
+    * KNN
     * Choose Evaluation Metric
     * Baseline eval metric
     * Fit and score model with Train
