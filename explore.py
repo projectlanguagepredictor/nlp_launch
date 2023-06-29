@@ -1,5 +1,6 @@
 #module
 import prepare as pp
+import stats_conclude as sc
 
 #standard imports
 import pandas as pd
@@ -9,7 +10,10 @@ import re
 import unicodedata
 import nltk
 
-import stats_conclude
+#for viz
+from wordcloud import WordCloudfrom wordcloud import WordCloud
+from sklearn.feature_extraction.text import CountVectorizer
+import matplotlib.pyplot as plt
 
 # -----------------------------------------------------------------EXPLORE-----------------------------------------------------------------
 
@@ -88,12 +92,6 @@ def plot_language_distribution(df):
     plt.ylabel('Language')
     plt.show()
 
-
-
-import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
 
 def generate_language_wordclouds(df):
     # Group the DataFrame by the 'language' column and join all the readme files for each language into a single string
