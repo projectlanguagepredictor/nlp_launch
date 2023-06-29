@@ -155,7 +155,7 @@ def baseline_classification(train):
 
 #------------------------------------------------------------- CLASSIFICATION -------------------------------------------------------------
 
-def all_4_classifiers(X_train, y_train, X_validate, y_validate, nn, baseline_accuracy, depth=10):
+def all_4_classifiers(X_train, y_train, X_validate, y_validate, baseline_accuracy, nn=25, depth=10):
     """This function takes in the train and validate datasets, a KNN number to go 
     to (exclusive) and returns models/visuals/explicit statments for decision tree, 
     random forest, knn, and logistic regression.
