@@ -53,7 +53,7 @@ def baseline_accuracy(train, mode_variable, target_col):
     Format: baseline_accuracy = function()
     '''
     #establish baseline accuracy
-    train['baseline_prediction'] = {mode_variable}
+    train['baseline_prediction'] = [mode_variable]
     baseline_accuracy = (train.baseline_prediction == train[target_col]).mean()
     print(f'The baseline accuracy is {baseline_accuracy:.2%}')
 
