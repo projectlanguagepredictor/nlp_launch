@@ -68,16 +68,17 @@
 
 ### Model
 
-We decided to use * as our evaluation metric and KNN for our Test mode since it was the best after training on. We were able to accomplish an prediction accuracy of 81% beating our baseline prediction of 80%.
+We decided to use accuracy as our evaluation metric and KNN for our Test model since it was the best after training on. We were able to accomplish an prediction accuracy of 81% beating our baseline prediction of 80%.
 
 * Model
-    * KNN
-    * Choose Evaluation Metric
-    * Baseline eval metric
+    * KNN with an n_neighbor of 9
+    * Evaluation Metric: Accuracy
+    * Baseline .80
     * Fit and score model with Train
     * Score model with Validate
-    * Select best model
+    * KNN was our best model giving us an accuracy of .83
     * Score model with Test
+    
     
 ## Data Dictionary  
 
