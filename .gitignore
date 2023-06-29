@@ -9,6 +9,11 @@ archive/
 *.csv
 *.docx
 *.json
+ali_explore.ipynb
+ez_explore.ipynb
+ez_modeling.ipynb
+ez_prepare.ipynb
+ez_prepare.py
 
 # Byte-compiled / optimized / DLL files
 *.py[cod]
