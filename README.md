@@ -75,9 +75,9 @@ We decided to use accuracy as our evaluation metric and KNN for our Test model s
     * Evaluation Metric: Accuracy
     * Baseline .80
     * Fit and score model with Train
-    * Score model with Validate
+    * Score/model with Validate
     * KNN was our best model giving us an accuracy of .82
-    * Score model with Test
+    * Score/model with Test gave us an accuracy of .82 as well, matching our validate model.
     
     
 ## Data Dictionary  
@@ -99,4 +99,4 @@ The words used in readme's can be used with a great deal of proficiency in predi
 
 ## Recommendations/Next Steps
 
-We would create a column identifying the likely subject of each repo. Create a feature on github where individuals have to identify the subject that their project is looking into. This may User Experience and Interface engineers.
+We would create a column identifying the likely subject of each repo. Create a feature on github where individuals have to identify the subject that their project is looking into. This may assist User Experience and Interface engineers in better servicing the .
