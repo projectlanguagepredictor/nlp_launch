@@ -22,7 +22,7 @@
 * Prepare data
     * Identify and handle Nulls, duplicate data, and outliers
     * Change column names to make them readable
-* Explore data in search of drivers of wine quality
+* Explore data in search of predictors of programming language
     * Split into Train, Validate, Test
     * Start Visualizing Data
     * Select most relevant and interesting visualizations for final report
