@@ -5,6 +5,9 @@
 ## Project Description:
 
 * GitHub is a version control system platform that projects are tracked and saved on. It acts a resource for professionals and students. README files provide summaries of those projects and are typically the first thing people see when visiting a repository. Predicting the programming language based on README files can allow for more efficient research capabilities and greater utility by users using specific languages.
+
+* Libraries Used in a JupyterLab Notebook:
+    * Pandas, Numpy, Selenium, Re, NLTK, Scipy, Requests, BeautifulSoup, Seaborn, Matplotlib, SKLearn, typing, itertools
     
 ## Project Goal:
 
@@ -79,17 +82,16 @@
     
 ### Model
 
-We decided to use accuracy as our evaluation metric and KNN for our Test model since it was the best after training on. We were able to accomplish an prediction accuracy of 82% beating our baseline prediction of 80%.
+We decided to use accuracy as our evaluation metric and KNN for our test model since it was the best after training on. We were able to accomplish an prediction accuracy of 82% beating our baseline prediction of 81%.
 
 * Model
-    * KNN with an n_neighbor of 9
+    * KNN with 9 neighbors
     * Evaluation Metric: Accuracy
-    * Baseline .80
-    * Fit and score model with Train
-    * Score/model with Validate
-    * KNN was our best model giving us an accuracy of .82
-    * Score/model with Test gave us an accuracy of .82 as well, matching our validate model.
-    
+        * **Baseline 80.86**
+    * Fit and score model with train
+    * Score model with validate
+    * KNN was our best model:
+        * **Test Accuracy of 82.00**
     
 ## Data Dictionary  
 
