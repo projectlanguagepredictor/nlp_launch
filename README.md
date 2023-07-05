@@ -6,7 +6,7 @@
 
 * GitHub is a version control system platform that projects are tracked and saved on. It acts a resource for professionals and students. README files provide summaries of those projects and are typically the first thing people see when visiting a repository. Predicting the programming language based on README files can allow for more efficient research capabilities and greater utility by users using specific languages.
 
-* **Libraries Used in a JupyterLab Notebook:***
+* **Libraries Used in a JupyterLab Notebook:**
     * `Pandas, Numpy, Selenium, Re, NLTK, Scipy, Requests, BeautifulSoup, Seaborn, Matplotlib, SKLearn, typing, itertools`
     
 ## Project Goal:
