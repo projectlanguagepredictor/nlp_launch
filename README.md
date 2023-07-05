@@ -27,11 +27,6 @@
     * Start Visualizing Data
     * Select most relevant and interesting visualizations for final report
     * Find out which features have the strongest relationship with the target variable
-* Answer the following initial questions
-    1. What are the most common words in READMEs?
-    2. Does the length of the README vary by programming language?
-    3. Do different programming languages use a different number of unique words?
-    4. Are there any words that uniquely identify a programming language?
 * Develop a model to predict language
     * Choose Evaluation Metric
     * Evaluate model with Train and Validate
@@ -61,11 +56,27 @@
     * No outliers removed
 
 ### Explore
-1. What are the most common words in READMEs?
-2. Does the length of the README vary by programming language?
-3. Do different programming languages use a different number of unique words?
-4. Are there any words that uniquely identify a programming language?
 
+1. What are the most common words in READMEs?
+    * http is the highest, with more time we would also remove that word during cleaning to be able to interpret the other words better as it is an outlier. img came in as the second highest word
+        * The rest of the top 20 words: code, awesome, source, star, data, web, tool, library, href, shield, open, go, svg, html, style, badge, python, image
+        
+2. Does the length of the README vary by programming language?
+    * Go seemed to have a spike though, but not significant.
+
+3. Do different programming languages use a different number of unique words?
+    * Python has the highest with 272
+    * Java has the least with 125.
+ 
+4. Are there any words that uniquely identify a programming language?
+    * Python contains library and api
+    * Python contains image, python, data, and code
+    * JavaScript contains j, style, svg, and star
+    * HTML contains python and html
+    * Shell contains open and code
+    * Java contains style, svg, and shield
+    * Unsurprisingly, Go contains go
+    
 ### Model
 
 We decided to use accuracy as our evaluation metric and KNN for our Test model since it was the best after training on. We were able to accomplish an prediction accuracy of 82% beating our baseline prediction of 80%.
@@ -99,4 +110,4 @@ The words used in readme's can be used with a great deal of proficiency in predi
 
 ## Recommendations/Next Steps
 
-We would create a column identifying the likely subject of each repo. Create a feature on github where individuals have to identify the subject that their project is looking into. This may assist User Experience and Interface engineers in better servicing the .
+We would create a column identifying the project type of each repo. Create a feature on github where individuals have to identify the subject that their project is looking into. This may involve user experience and interface engineers.
