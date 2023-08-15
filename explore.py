@@ -1,5 +1,6 @@
-# #module
-# import stats_conclude as sc
+#module
+import prepare as pp
+import stats_conclude as sc
 
 #standard imports
 import pandas as pd
@@ -24,7 +25,7 @@ def unique_words(word_counts):
     plt.style.use('seaborn-darkgrid')
 
     #viz
-    word_counts.sort_values('all', ascending=False)[1:21][['python', 'javascript', 'html', 'shell', 'java', 'go']].head(20).plot.barh()
+    word_counts.sort_values('all', ascending=False)[['python', 'javascript', 'html', 'shell', 'java', 'go']].head(20).plot.barh()
     plt.xlabel('Count')
     plt.ylabel('Word')
     plt.title('Word Identification per Language')
@@ -59,43 +60,51 @@ def clean(text):
     
     # Combine standard English stopwords
     stopwords = nltk.corpus.stopwords.words('english')
-    
+  
     # Lemmatize words and remove stopwords
     cleaned_words = [wnl.lemmatize(word) for word in words if word not in stopwords]
     
     return cleaned_words
 
-def get_words(train):
+def get_words(df, limit):
     '''
-    this function extracts and counts words from a df based on different company responses.
-    returns a word_count df containing the associated words for each response
+    this function extracts words from a df based on different programming languages.
+    returns a cut off containing the top 'limit' words.
     '''
     #assinging all words to proper labels
-    explanation_words = (' '.join(train[train.company_response_to_consumer == 'Closed with explanation'].lemon))
-    no_money_words = (' '.join(train[train.company_response_to_consumer == 'Closed with non-monetary relief'].lemon))
-    money_words = (' '.join(train[train.company_response_to_consumer == 'Closed with monetary relief'].lemon))
-    timed_out_words = (' '.join(train[train.company_response_to_consumer == 'Untimely response'].lemon))
-    closed_words = (' '.join(train[train.company_response_to_consumer == 'Closed'].lemon))
-    all_words = (' '.join(train.lemon))
+    python_words = clean(' '.join(df[df.language == 'python'].readme))
+    javascript_words = clean(' '.join(df[df.language == 'javascript'].readme))
+    html_words = clean(' '.join(df[df.language == 'html'].readme))
+    shell_words = clean(' '.join(df[df.language == 'shell'].readme))
+    java_words = clean(' '.join(df[df.language == 'java'].readme))
+    go_words = clean(' '.join(df[df.language == 'go'].readme))
+    other_words = clean(' '.join(df[df.language == 'other'].readme))
+    all_words = clean(' '.join(df.readme))
+    
     
     #grabbing frequencies of occurences
-    explanation_freq = pd.Series(explanation_words).value_counts()
-    no_money_freq = pd.Series(no_money_words).value_counts()
-    money_freq = pd.Series(money_words).value_counts()
-    timed_out_freq = pd.Series(timed_out_words).value_counts()
-    closed_freq = pd.Series(closed_words).value_counts()
+    python_freq = pd.Series(python_words).value_counts()
+    javascript_freq = pd.Series(javascript_words).value_counts()
+    html_freq = pd.Series(html_words).value_counts()
+    shell_freq = pd.Series(shell_words).value_counts()
+    java_freq = pd.Series(java_words).value_counts()
+    go_freq = pd.Series(go_words).value_counts()
+    other_freq = pd.Series(other_words).value_counts()
     all_freq = pd.Series(all_words).value_counts()
-
+    
     #combine into df to see all words and languages together
-    word_counts = (pd.concat([all_freq, explanation_freq, no_money_freq, money_freq, timed_out_freq, closed_freq], axis=1, sort=True)
-                .set_axis(['all', 'explanation', 'no_money', 'money', 'timed_out', 'closed'], axis=1)
+    word_counts = (pd.concat([all_freq, python_freq, javascript_freq, html_freq, shell_freq, java_freq, go_freq, other_freq], axis=1, sort=True)
+                .set_axis(['all', 'python', 'javascript', 'html', 'shell', 'java', 'go', 'other'], axis=1)
                 .fillna(0)
                 .apply(lambda s: s.astype(int)))
     
-    print(f"Total Unique Words Found per Response:{word_counts.shape[0]}")
+    #filtering out the garbage
+    filtered_word_counts = word_counts.sort_values(by='all',ascending=False)[:limit]
+    
+    print(f"Unfiltered Data: {word_counts.shape[0]} words  Filtered Data: {filtered_word_counts.shape[0]} words")
     print()
     
-    return word_counts
+    return filtered_word_counts
     
 
 def plot_unique_words_and_compare(df):
